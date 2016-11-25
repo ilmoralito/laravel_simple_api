@@ -12,4 +12,9 @@ class Customer extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

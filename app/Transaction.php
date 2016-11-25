@@ -12,4 +12,9 @@ class Transaction extends Model
         'amount',
         'date'
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }

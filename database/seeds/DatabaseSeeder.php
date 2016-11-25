@@ -52,39 +52,24 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Creating transactions');
         $date = new DateTime();
 
-        Transaction::create([
-            'customer_id' => $customer1->id,
-            'country_id' => $country1->id,
+        $customer1->transactions()->create([
             'amount' => 25.50,
             'date' => $date
         ]);
 
-        Transaction::create([
-            'customer_id' => $customer1->id,
-            'country_id' => $country1->id,
-            'amount' => 30.50,
+        $customer1->transactions()->create([
+            'amount' => 50.50,
+            'date' => $date->add(new DateInterval('P10D'))
+        ]);
+
+        $customer1->transactions()->create([
+            'amount' => 150.00,
             'date' => $date->add(new DateInterval('P15D'))
         ]);
 
-        Transaction::create([
-            'customer_id' => $customer2->id,
-            'country_id' => $country1->id,
-            'amount' => 30.50,
-            'date' => $date->add(new DateInterval('P10D'))
-        ]);
-
-        Transaction::create([
-            'customer_id' => $customer3->id,
-            'country_id' => $country1->id,
-            'amount' => 300.50,
-            'date' => $date->add(new DateInterval('P10D'))
-        ]);
-
-        Transaction::create([
-            'customer_id' => $customer3->id,
-            'country_id' => $country2->id,
-            'amount' => 100.50,
-            'date' => $date
+        $customer2->transactions()->create([
+            'amount' => 18.99,
+            'date' => $date->add(new DateInterval('P20D'))
         ]);
 
         $this->command->info('Seeding complete');

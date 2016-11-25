@@ -10,6 +10,9 @@ class TransactionController extends Controller
 {
     public function index($date1, $date2)
     {
-        return Transaction::whereBetween('date', [$date1, $date2])->get()->toArray();
+        return Transaction::with('customer')
+            ->whereBetween('date', [$date1, $date2])
+            ->get()
+            ->toArray();
     }
 }
