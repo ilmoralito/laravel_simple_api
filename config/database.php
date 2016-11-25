@@ -1,5 +1,18 @@
 <?php
 
+if ($url = env('CLEARDB_DATABASE_URL', false)) {
+    $parts = parse_url($url);
+    $host = $parts['host'];
+    $username = $parts['user'];
+    $password = $parts['pass'];
+    $database = substr($parts['path'], 1);
+} else {
+    $host = env('DB_HOST', 'localhost');
+    $username = env('DB_USERNAME', 'forge');
+    $password = env('DB_PASSWORD', '');
+    $database = env('DB_DATABASE', 'forge');
+}
+
 return [
 
     /*
@@ -54,11 +67,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => $host,
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => $database,
+            'username' => $username,
+            'password' => $password,
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
