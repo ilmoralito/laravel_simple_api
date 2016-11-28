@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         DB::table('customers')->delete();
         DB::table('countries')->delete();
         DB::table('transactions')->delete();
+        DB::table('profiles')->delete();
 
         $this->command->info('Creating countries and customers');
 
@@ -33,11 +34,28 @@ class DatabaseSeeder extends Seeder
         $customer1 = $country1->customers()->create([
             'full_name' => 'Customer One'
         ]);
+
+        $customer1->profile()->create([
+            'email' => 'customer1@domain.com',
+            'phone' => '88887777'
+        ]);
+
         $customer2 = $country1->customers()->create([
             'full_name' => 'Customer Two'
         ]);
+
+        $customer2->profile()->create([
+            'email' => 'customer2@domain.com',
+            'phone' => '88886666'
+        ]);
+        
         $customer3 = $country1->customers()->create([
             'full_name' => 'Customer Three'
+        ]);
+
+        $customer3->profile()->create([
+            'email' => 'customer3@another.domain.com',
+            'phone' => '88885555'
         ]);
 
         $country2 = Country::create(['name' => 'Country Two']);
