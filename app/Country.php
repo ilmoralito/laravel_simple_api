@@ -8,6 +8,12 @@ class Country extends Model
 {
     protected $fillable = ['name'];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'id'
+    ];
+
     public function customers()
     {
         return $this->hasMany(Customer::class);

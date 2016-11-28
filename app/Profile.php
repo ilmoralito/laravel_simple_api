@@ -4,20 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Profile extends Model
 {
     protected $fillable = [
-        'customer_id',
-        'country_id',
-        'amount',
-        'date'
+        'email',
+        'phone'
     ];
 
     protected $hidden = [
         'id',
+        'customer_id',
         'created_at',
-        'updated_at',
-        'customer_id'
+        'updated_at'
     ];
 
     public function customer()

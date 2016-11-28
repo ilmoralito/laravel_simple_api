@@ -10,6 +10,6 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        return Customer::with('country')->get()->toArray();
+        return Customer::with(['country', 'profile'])->get()->toArray();
     }
 }
