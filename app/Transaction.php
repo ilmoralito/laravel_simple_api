@@ -13,6 +13,13 @@ class Transaction extends Model
         'date'
     ];
 
+    protected $hidden = [
+        'id',
+        'created_at',
+        'updated_at',
+        'customer_id'
+    ];
+
     public function customer()
     {
         return $this->belongsTo(Customer::class);
